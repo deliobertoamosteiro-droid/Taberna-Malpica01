@@ -1,0 +1,932 @@
+l<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taberna Malpica - Desde 1969 en A Coruña. Cocina gallega tradicional junto a la Plaza de María Pita. Menú del día 14€. Reservas al 635 85 98 35">
+    <meta name="keywords" content="Taberna Malpica, restaurante Coruña, cocina gallega, pulpo a feira, Plaza María Pita, menú del día">
+    <meta name="google-site-verification" content="QtRDhaL4JcGEMnYKhJFa7Ln0tG3DWG7cgJZR-JPMLjU" />
+    <title>Taberna Malpica - Desde 1969 en A Coruña | Cocina Gallega Tradicional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Admin Secret Button */
+        .admin-access {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 15px;
+            height: 15px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+            opacity: 0.05;
+        }
+
+        .admin-access:hover {
+            opacity: 0.3;
+        }
+
+        /* Status Banner */
+        .status-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: slideDown 0.5s ease;
+        }
+
+        .status-abierto {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status-cerrado {
+            background: #f44336;
+            color: white;
+        }
+
+        .status-vacaciones {
+            background: #FF9800;
+            color: white;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: #f0a500;
+            color: #1a1a2e;
+            padding: 0.8rem 2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 20px rgba(240, 165, 0, 0.4);
+            animation: pulse 2s ease infinite;
+        }
+
+        .hero-tagline {
+            font-size: 1.6rem;
+            color: #f0a500;
+            font-style: italic;
+            margin-top: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Navigation */
+        nav {
+            background: #1a1a2e;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 60px;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #f0a500;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f0a500;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 3rem;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #f0a500, transparent);
+        }
+
+        /* Historia Section */
+        .historia-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .historia-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #555;
+        }
+
+        .historia-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #f0a500 0%, #f0a500 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 85%;
+            padding: 0 0.2rem;
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+
+        .historia-visual {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d3561 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        .historia-visual h3 {
+            font-size: 2rem;
+            color: #f0a500;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            border-left: 3px solid #f0a500;
+        }
+
+        .timeline-item strong {
+            color: #f0a500;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Location Hero */
+        .location-hero {
+            background: linear-gradient(135deg, rgba(240, 165, 0, 0.95) 0%, rgba(214, 149, 0, 0.9) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .location-hero h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Menu del Dia */
+        .menu-dia-highlight {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d3561 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        .menu-dia-highlight h3 {
+            font-size: 2.5rem;
+            color: #f0a500;
+            margin-bottom: 1rem;
+        }
+
+        .menu-dia-highlight .price {
+            font-size: 3.5rem;
+            color: #f0a500;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .menu-dia-highlight p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 1rem auto;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-top: 6px solid #f0a500;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .menu-item h3 {
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .menu-item ul {
+            list-style: none;
+        }
+
+        .menu-item li {
+            padding: 0.8rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 2rem;
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #f0a500;
+            font-size: 1.2rem;
+        }
+
+        .price-tag {
+            color: #f0a500;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-left: 1rem;
+        }
+
+        /* Reservation Section */
+        .reservation-section {
+            background: #f9f9f9;
+            padding: 5rem 2rem;
+        }
+
+        .reservation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .reservation-info {
+            background: #fff8e1;
+            border-left: 5px solid #f0a500;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+
+        .reservation-info h4 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .reservation-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .reservation-info li {
+            padding: 0.5rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .reservation-info li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #f0a500;
+            font-weight: bold;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-card .icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-card a {
+            color: #f0a500;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: #1a1a2e;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            color: #f0a500;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                margin-top: 50px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .year-badge {
+                font-size: 1.2rem;
+                padding: 0.6rem 1.5rem;
+            }
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .historia-container {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                top: 50px;
+            }
+            nav a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+            .location-hero h3 {
+                font-size: 1.8rem;
+            }
+            .reservation-container {
+                padding: 2rem 1.5rem;
+            }
+            .status-banner {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <!-- BANNER DINÁMICO - SE ACTUALIZA AUTOMÁTICAMENTE CON EL HORARIO -->
+    <div class="status-banner" id="estado-automatico">
+        <!-- El JavaScript actualizará esto automáticamente -->
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Taberna Malpica</h1>
+            <div class="year-badge">Desde 1969</div>
+            <p class="hero-tagline">Más de 55 años de tradición familiar<br>en el corazón de A Coruña</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#historia">Nuestra Historia</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+            <li><a href="#menu-dia">Menú del Día</a></li>
+            <li><a href="#carta">Carta</a></li>
+            <li><a href="#reservas">Reservas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Historia Section -->
+    <section id="historia">
+        <h2>Una Historia de Tradición y Sabor</h2>
+        <div class="historia-container">
+            <div class="historia-text">
+                <p>
+                    En <span class="highlight">1969</span>, cuando la Plaza de María Pita empezaba a convertirse en el corazón cultural y social de A Coruña, abría sus puertas <strong>Taberna Malpica</strong>. Un proyecto familiar que nació con una misión clara: ofrecer los auténticos sabores de Galicia en un ambiente acogedor y genuino.
+                </p>
+                <p>
+                    Durante más de <span class="highlight">cinco décadas</span>, hemos sido testigos de la evolución de nuestra ciudad, pero hemos mantenido intacta nuestra esencia: <strong>producto fresco, recetas tradicionales y el calor de lo familiar</strong>. Generación tras generación, hemos servido raciones y platos que cuentan la historia de nuestra tierra.
+                </p>
+                <p>
+                    Hoy, en pleno siglo XXI, seguimos siendo ese lugar donde los coruñeses y visitantes encuentran <strong>la autenticidad de la cocina gallega</strong>, elaborada con el mimo y la dedicación de siempre. Porque lo bueno, lo que de verdad importa, no cambia con el tiempo.
+                </p>
+            </div>
+            
+            <div class="historia-visual">
+                <h3>Más de 55 años de pasión</h3>
+                <div class="timeline-item">
+                    <strong>1969</strong>
+                    <p>Apertura de Taberna Malpica como negocio familiar</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Décadas 70-90</strong>
+                    <p>Consolidación como referente de raciones en el centro histórico</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Siglo XXI</strong>
+                    <p>Renovación del local manteniendo nuestra esencia tradicional</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Hoy</strong>
+                    <p>Seguimos siendo el lugar de encuentro para los amantes de la cocina gallega auténtica</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Hero -->
+    <div class="location-hero" id="ubicacion">
+        <h3>En el Corazón de la Historia</h3>
+        <p>
+            Junto a la Plaza de María Pita, donde en 1589 la heroína coruñesa defendió la ciudad del asedio inglés, 
+            nuestra taberna te espera. <strong>Ubicados en pleno centro histórico</strong>, rodeados de edificios modernistas 
+            y bajo las icónicas galerías gallegas, somos parte viva del latido cultural de A Coruña.
+        </p>
+    </div>
+
+    <!-- ████████████████████████████████████████████████
+         LÍNEA 290 - MENÚ DEL DÍA
+         Cambia el precio donde dice "14€"
+         Cambia la descripción en el texto
+         ████████████████████████████████████████████████ -->
+    <section id="menu-dia">
+        <h2>Menú del Día</h2>
+        <div class="menu-dia-highlight">
+            <h3>🍽️ Menú Completo</h3>
+            <div class="price">13€</div>
+            <p>
+                <strong>Dos platos a elegir + Bebida + Postre y Café</strong><br><br>
+                Comida casera elaborada diariamente con productos frescos de mercado.<br>
+                Nuestro menú cambia según la temporada y la disponibilidad del día.<br><br>
+                <em>¡Pregunta por las opciones de hoy!</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- ████████████████████████████████████████████████
+         LÍNEA 310 - CARTA CON PRECIOS
+         Para cambiar precio: busca el plato y cambia "XX€"
+         Para añadir plato: copia línea <li> y pega
+         Para eliminar: borra la línea completa
+         ████████████████████████████████████████████████ -->
+    <section id="carta">
+        <h2>Nuestra Carta</h2>
+        <p style="text-align: center; font-size: 1.2rem; color: #555; margin-bottom: 2rem;">
+            Sabores auténticos de Galicia, elaborados con productos frescos de primera calidad
+        </p>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>🐙 Del Mar Gallego</h3>
+                <ul>
+                    <li>Pulpo a feira <span class="price-tag">-€</span></li>
+                    <li>Chipirones a la plancha <span class="price-tag">-€</span></li>
+                    <li>Calamares fritos <span class="price-tag">-€</span></li>
+                    <li>Mejillones al vapor <span class="price-tag">-€</span></li>
+                    <li>Almejas a la marinera <span class="price-tag">-€</span></li>
+                    <li>Zamburiñas gratinadas <span class="price-tag">-€</span></li>
+                    <li>Merluza a la plancha <span class="price-tag">-€</span></li>
+                    <li>Navajas a la plancha <span class="price-tag">-€</span></li>
+                </ul>
+            </div>
+
+            <div class="menu-item">
+                <h3>🥘 Especialidades</h3>
+                <ul>
+                    <li>Tortilla española jugosa <span class="price-tag">-€</span></li>
+                    <li>Empanada gallega <span class="price-tag">-€</span></li>
+                    <li>Pimientos de Padrón <span class="price-tag">-€</span></li>
+                    <li>Croquetas caseras <span class="price-tag">-€</span></li>
+                    <li>Raxo con patatas <span class="price-tag">-€</span></li>
+                    <li>Callos a la gallega <span class="price-tag">-€</span></li>
+                    <li>Lacón con grelos <span class="price-tag">-€</span></li>
+                    <li>Fabada de la casa <span class="price-tag">-€</span></li>
+		    <li>Carne asada con patatas <span class="price-tag">-€</span></li>
+                </ul>
+            </div>
+
+            <div class="menu-item">
+                <h3>🥗 Ensaladas</h3>
+                <ul>
+                    <li>Ensalada mixta <span class="price-tag">-€</span></li>
+                    <li>Ensalada completa <span class="price-tag">-€</span></li>
+                </ul>
+            </div>
+
+            <div class="menu-item">
+                <h3>🍰 Postres</h3>
+                <ul>
+                    <li>Tarta de Santiago <span class="price-tag">-€</span></li>
+                    <li>Tarta de queso <span class="price-tag">-€</span></li>
+                    <li>Coulant de chocolate <span class="price-tag">-€</span></li>
+                    <li>Helados <span class="price-tag">-€</span></li>
+                    <li>Arroz con leche <span class="price-tag">-€</span></li>
+		    <li>Yogures <span class="price-tag">-€</span></li>
+	            <li>Fruta <span class="price-tag">-€</span></li>			
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ████████████████████████████████████████████████
+         LÍNEA 395 - RESERVAS Y SEÑAL
+         Cambia importe de señal: busca "30€"
+         ████████████████████████████████████████████████ -->
+    <div class="reservation-<!section..> -->" id="reservas">
+        <div class="reservation-container">
+            <h2 style="margin-bottom: 1rem;">Reserva tu Mesa</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                Asegura tu experiencia en Taberna Malpica
+            </p>
+
+            <div class="reservation-info">
+                <h4>📋 Política de Reservas</h4>
+                <ul>
+                    <li><strong>Señal requerida:</strong> -€ por reserva</li>
+                    <li>La señal se descuenta de tu cuenta final</li>
+                    <li><strong>Cancelaciones:</strong> Si cancelas dentro de las 48 horas, pierdes la señal de -€</li>
+                    <li>Si vienes a cenar, los -€ se restan de tu cuenta</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; font-size: 1.2rem; color: #1a1a2e; margin: 2rem 0;">
+                <strong>Reserva por WhatsApp</strong><br>
+                <span style="color: #666; font-size: 1rem;">Te confirmaremos tu reserva y te enviaremos los datos para el pago de la señal</span>
+            </p>
+
+            <!-- ████████████████████████████████████████████████
+                 LÍNEA 410 - TELÉFONO WHATSAPP
+                 Cambia "635859835" por tu número
+                 ████████████████████████████████████████████████ -->
+            <a href="https://wa.me/34635859835?text=Hola,%20quiero%20hacer%20una%20reserva%20en%20Taberna%20Malpica" class="whatsapp-btn" target="_blank">
+                💬 Haz tu reserva para el mediodia o la noche
+            </a>
+
+            <p style="text-align: center; color: #999; margin-top: 2rem; font-size: 0.95rem;">
+                Reserva en el <a href="tel:635859835" style="color: #f0a500; text-decoration: none;"><strong>635 85 98 35</strong></a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contacto">
+        <h2>Visítanos</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="icon">📍</div>
+                <h3>Ubicación</h3>
+                <p>
+                    Calle Capitán Troncoso, 1<br>
+                    15001 A Coruña<br>
+                    <strong>Junto a Plaza de María Pita</strong>
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">📞</div>
+                <h3>Teléfono</h3>
+                <p>
+                    <a href="tel:635859835">635 85 98 35</a>
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <div class="
+	<script>
+	// Actualizar también la sección de horarios detallada
+    	const estadoDetalle = document.getElementById('estado-horario-detalle');
+    	if (estadoDetalle) {
+        if (estaAbierto) {
+            estadoDetalle.innerHTML = '<span style="color: #4CAF50;">🟢 ABIERTO AHORA - ¡Pasa cuando quieras!</span>';
+        } else {
+            estadoDetalle.innerHTML = '<span style="color: #e74c3c;">🔴 CERRADO AHORA - Te esperamos en nuestro horario</span>';
+        }
+    	}
+	<script>
+
+	// ████████████████████████████████████████████████
+	// LÓGICA AUTOMÁTICA DE HORARIOS - CON HORARIO Y VACACIONES
+	// ████████████████████████████████████████████████
+
+	function actualizarEstadoRestaurante() {
+    	const ahora = new Date();
+    	const dia = ahora.getDay(); // 0=domingo, 1=lunes, ..., 6=sábado
+    	const hora = ahora.getHours();
+    	const minutos = ahora.getMinutes();
+    	const horaDecimal = hora + (minutos / 100);
+    
+    	// ████████████████████████████████████████████████
+    	// CONFIGURACIÓN DE VACACIONES - MODIFICA AQUÍ
+   	 // ████████████████████████████████████████████████
+    const vacaciones = {
+        activas: false,  // Cambia a "true" para activar vacaciones
+        fechaFin: new Date('2024-12-31'), // Fecha de fin de vacaciones
+        mensaje: 'Cerrado por vacaciones hasta el 15 de enero'
+    };
+    // ████████████████████████████████████████████████
+    
+    // Horarios normales de la taberna
+    const horarios = {
+        0: { manana: { apertura: 12, cierre: 16 }, tarde: { apertura: null, cierre: null } },
+        1: { manana: { apertura: 12, cierre: 16 }, tarde: { apertura: 20, cierre: 23 } },
+        2: { manana: { apertura: 12, cierre: 16 }, tarde: { apertura: 20, cierre: 23 } },
+        3: { manana: { apertura: 12, cierre: 16 }, tarde: { apertura: 20, cierre: 23 } },
+        4: { manana: { apertura: 12, cierre: 16 }, tarde: { apertura: 20, cierre: 23 } },
+        5: { manana: { apertura: 12, cierre: 16 }, tarde: { apertura: 20, cierre: 23 } },
+        6: { manana: { apertura: 12, cierre: 16 }, tarde: { apertura: 20, cierre: 23 } }
+    };
+    
+    let estaAbierto = false;
+    let mensaje = '';
+    let claseEstado = '';
+    
+    const horarioHoy = horarios[dia];
+    const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    
+    // PRIMERO verificar si estamos en vacaciones
+    if (vacaciones.activas && ahora < vacaciones.fechaFin) {
+        estaAbierto = false;
+        claseEstado = 'status-vacaciones';
+        mensaje = `🏖️ ${vacaciones.mensaje}`;
+    }
+    // Si NO estamos en vacaciones, verificar horario normal
+    else {
+        // Verificar horario de mediodía (12:00-16:00)
+        if (horaDecimal >= horarioHoy.manana.apertura && horaDecimal < horarioHoy.manana.cierre) {
+            estaAbierto = true;
+            claseEstado = 'status-abierto';
+            mensaje = '✅ ABIERTO - ¡Te esperamos!';
+        }
+        // Verificar horario de tarde (20:00-23:00)
+        else if (horarioHoy.tarde.apertura && horaDecimal >= horarioHoy.tarde.apertura && horaDecimal < horarioHoy.tarde.cierre) {
+            estaAbierto = true;
+            claseEstado = 'status-abierto';
+            mensaje = '✅ ABIERTO - ¡Te esperamos!';
+        }
+        // Está cerrado (horario normal)
+        else {
+            estaAbierto = false;
+            claseEstado = 'status-cerrado';
+            
+            // Calcular próxima apertura
+            let proximaApertura = '';
+            
+            if (dia === 0 && horaDecimal >= 16) {
+                proximaApertura = 'Abre el lunes a las 12:00';
+            }
+            else if (horarioHoy.tarde.apertura && horaDecimal >= horarioHoy.manana.cierre && horaDecimal < horarioHoy.tarde.apertura) {
+                proximaApertura = `Abre esta tarde a las ${horarioHoy.tarde.apertura}:00`;
+            }
+            else if (horarioHoy.tarde.apertura && horaDecimal >= horarioHoy.tarde.cierre) {
+                const manana = (dia + 1) % 7;
+                const horarioManana = horarios[manana];
+                proximaApertura = `Abre ${diasSemana[manana]} a las ${horarioManana.manana.apertura}:00`;
+            }
+            else if (horaDecimal < horarioHoy.manana.apertura) {
+                proximaApertura = `Abre hoy a las ${horarioHoy.manana.apertura}:00`;
+            }
+            else {
+                const manana = (dia + 1) % 7;
+                const horarioManana = horarios[manana];
+                proximaApertura = `Abre ${diasSemana[manana]} a las ${horarioManana.manana.apertura}:00`;
+            }
+            
+            mensaje = `🔒 CERRADO - ${proximaApertura}`;
+        }
+    	}
+    
+    	// Actualizar el banner
+    	const banner = document.querySelector('.status-banner');
+    	if (banner) {
+        banner.className = `status-banner ${claseEstado}`;
+        banner.innerHTML = mensaje;
+    	}
+
+    	// Actualizar también la sección de horarios detallada
+    	const estadoDetalle = document.getElementById('estado-horario-detalle');
+    	if (estadoDetalle) {
+        if (vacaciones.activas && ahora < vacaciones.fechaFin) {
+            estadoDetalle.innerHTML = '<span style="color: #FF9800;">🏖️ CERRADO POR VACACIONES</span>';
+        } else if (estaAbierto) {
+            estadoDetalle.innerHTML = '<span style="color: #4CAF50;">🟢 ABIERTO AHORA - ¡Pasa cuando quieras!</span>';
+        } else {
+            estadoDetalle.innerHTML = '<span style="color: #e74c3c;">🔴 CERRADO AHORA - Te esperamos en nuestro horario</span>';
+        }
+   	 }
+	}
+
+	// Ejecutar cuando carga la página y cada minuto
+	document.addEventListener('DOMContentLoaded', function() {
+   	 actualizarEstadoRestaurante();
+   	 setInterval(actualizarEstadoRestaurante, 60000); // Actualizar cada minuto
+	});
+	</script>
+  	</body>
+ 	</html>
